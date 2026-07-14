@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Git Repo Chakaria{% endblock title %}
+
+{% block content %}
+
+<section class="contact">
+    <h2></h2>
+    <form>
+    {% csrf_token %}
+    
+    <input type="text" name="AgentId" placeholder="Your AgentId" value="{{AgentId|default:''}}" autocomplete="off">
+    <input type="text" name="LoginId" placeholder="Your LoginId" value="{{LoginId|default:''}}" autocomplete="off">
+    <input type="password" name="Password" placeholder="Your Password" value="{{Password|default:''}}" autocomplete="off">
+
+
+    <button type="submit" class="btn btn-primary">
+        <span class="spinner-grow spinner-grow-sm"></span>
+        Login...
+    </button>
+
+    </form>
+</section>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<header class="header">
+    {% load static %}
+    <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            {% comment "nav var" %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>{% endcomment %}
+            <li><a href="{% url 'CandidateLogout' %}">Logout</a></li>
+        </ul>
+    </nav>
+</header>

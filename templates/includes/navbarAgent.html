@@ -1,0 +1,13 @@
+<header class="header">
+    {% load static %}
+    <img src="{% static 'images/logo.png' %}" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            <h3>{% block AgentName %} {% endblock AgentName %}</h3>
+            {% comment "nav var" %}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>{% endcomment %}
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </nav>
+</header>
