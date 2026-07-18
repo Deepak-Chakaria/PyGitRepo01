@@ -1,4 +1,4 @@
-name: Python Docker CICD Pipelint
+name: Python Docker CICD Pipeline__
 
 # Trigger the workflow on pushed or pull request to the main branch
 on:
@@ -43,7 +43,7 @@ jobs:
        # Install new fresh Ubuntu Enviornment
        runs-on: ubuntu-latest
        
-    steps: 
+     steps: 
          name: checkout Code
          uses: actions/checkout@v4
    
@@ -61,7 +61,7 @@ jobs:
              pip install -r requirements.txt
              python manage.py migrate
              python manage.py collectstatic --noinput
-          sudo systemctl restart gunicorn
+             sudo systemctl restart gunicorn
 
 
 
