@@ -1,0 +1,71 @@
+name: Python Docker CICD Pipelint
+
+# Trigger the workflow on pushed or pull request to the main branch
+on:
+   push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+job:
+# 1. CI-Job: Checking and Testing the Code
+  test-enviornament:
+
+  runs-on: ubentu-latest
+
+  steps:
+  # Download a copy of your code from GitHub
+  name: Checkout Repository Code
+  uses: actions/checkout@v4
+
+  # Setup Python and Interpeter Enviornment
+  name: Set-Up Python
+  uses: actions/setup-python@v5
+  with:
+    python-version: '3.13'
+
+  # Install Pytest(for unit testing) and Dependencies
+  name: Install Python Pytest + Dependencies
+  run: |
+    python -m pip install --upgrade pip
+    pip install pytest
+    if[ -f requirement.txt]; then pip install -r requirement.txt fi
+
+  # Execute the test
+  name: Run Unit test case with Pytest
+  run: |
+    python -m pytest tests/
+
+
+
+  # 2. CD Job: Create Docker image and push to Docker Hub
+  build-and-push:
+    # To Check if all the test cases are run successfully mention in "test-enviornament"
+    need: test-enviornament
+
+    # Install new fresh Ubuntu Enviornment
+    runs-on: ubuntu-latest
+
+    steps:
+      # Take latest code from the Repository
+      name: checkout Code
+      uses: actions/checkout@v4
+
+      # Example: Automated deployment using SSH directly to an Ubuntu Server / VPS 
+      name: Deploy to Production Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SERVER_IP }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SERVER_SSH_KEY }}
+        script: |
+          cd /var/www/your-django-project
+          git pull origin main
+          source venv/bin/activate
+          pip install -r requirements.txt
+          python manage.py migrate
+          python manage.py collectstatic --noinput
+          sudo systemctl restart gunicorn
+
+
+
