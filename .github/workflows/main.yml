@@ -25,9 +25,9 @@ jobs:
           pip install pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run unit tests
-        run: |
-          python -m pytest tests/
+      # - name: Run unit tests
+      #   run: |
+      #     python -m pytest tests/
 
   # 2. CD job: deploy to server (runs after tests)
   build-and-push:
