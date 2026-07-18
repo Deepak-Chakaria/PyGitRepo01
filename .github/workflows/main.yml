@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-job:
+jobs:
    test-enviornament:
    # 1. CI-Job: Checking and Testing the Code
 
