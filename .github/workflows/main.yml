@@ -43,8 +43,7 @@ job:
        # Install new fresh Ubuntu Enviornment
        runs-on: ubuntu-latest
 
-       steps:
-         # Take latest code from the Repository
+       steps: # Take latest code from the Repository
          name: checkout Code
          uses: actions/checkout@v4
    
