@@ -8,8 +8,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-   # 1. CI-Job: Checking and Testing the Code
-   test-enviornament:
+  # 1. CI-Job: Checking and Testing the Code
+  test-enviornament:
 
      runs-on: ubentu-latest
      steps:
